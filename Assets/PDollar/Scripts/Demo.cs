@@ -48,8 +48,11 @@ namespace PDollarGestureRecognizer
         void Start()
         {
             platform = Application.platform;
+            
             drawArea = new Rect(0, 0, Screen.width, Screen.height);
-            drawArea = new Rect(0, 0, Screen.width - Screen.width / 3, Screen.height);
+
+            if (writingNewGestures)
+                drawArea = new Rect(0, 0, Screen.width - Screen.width / 3, Screen.height);
 
             // Load pre-made gestures from StreamingAssets
             string streamingAssetsPath = Path.Combine(Application.streamingAssetsPath, "Gestures");
@@ -163,7 +166,7 @@ namespace PDollarGestureRecognizer
                     ++strokeId;
 
                     Transform tmpGesture = Instantiate(gestureOnScreenPrefab, transform.position, transform.rotation) as Transform;
-
+ 
                     currentGestureLineRenderer = tmpGesture.GetComponent<LineRenderer>();
                     currentGestureLineRenderer.material.color = currentColor;
 
@@ -289,16 +292,23 @@ namespace PDollarGestureRecognizer
 
             // Create GameObject
             GameObject meshObject = new GameObject("GestureMesh", typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider), typeof(Rigidbody));
-            meshObject.GetComponent<Rigidbody>().isKinematic = true; // optional, if you don't want physics to affect it	
+
+            meshObject.GetComponent<Rigidbody>().isKinematic = true;
             meshObject.GetComponent<MeshFilter>().mesh = mesh;
             meshObject.GetComponent<MeshRenderer>().material = meshMaterial;
             meshObject.GetComponent<MeshCollider>().sharedMesh = mesh;
 
-            meshObject.GetComponent<MeshCollider>().convex = true; // optional
-            meshObject.GetComponent<MeshCollider>().isTrigger = true; // optional, if you want it to be a trigger
-            meshObject.AddComponent<MoveForwardForSeconds>();
+            meshObject.GetComponent<MeshCollider>().convex = true;
+            meshObject.GetComponent<MeshCollider>().isTrigger = true;
 
-            meshObject.transform.localScale *= 1.2f;
+            // Calculate direction from camera to mesh object
+            Vector3 directionFromCamera = (meshObject.transform.position - Camera.main.transform.position).normalized;
+
+            // Add movement script and assign direction
+            MoveForwardForSeconds mover = meshObject.AddComponent<MoveForwardForSeconds>();
+            mover.moveDirection = directionFromCamera;
+
+
         }
 
         void OnGUI()
