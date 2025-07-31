@@ -669,6 +669,7 @@ MonoBehaviour:
   gestureOnScreenPrefab: {fileID: 400000, guid: 971129baafd304455a111daa5207b8a1,
     type: 3}
   meshMaterial: {fileID: 2100000, guid: 08fa8232e9cbb7d4d83c803329f52771, type: 2}
+  writingNewGestures: 1
 --- !u!114 &1907031150
 MonoBehaviour:
   m_ObjectHideFlags: 0
