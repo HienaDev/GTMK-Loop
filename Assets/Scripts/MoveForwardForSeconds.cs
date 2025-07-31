@@ -2,25 +2,24 @@ using UnityEngine;
 
 public class MoveForwardForSeconds : MonoBehaviour
 {
-    public float speed = 15f;         // Movement speed in units/second
-    public float duration = 3f;      // Time in seconds to move forward
+    public float speed = 15f;
+    public float duration = 3f;
 
     private float timer = 0f;
     private bool isMoving = true;
+
+    public Vector3 moveDirection = Vector3.forward; // Set externally
+
 
     void Update()
     {
         if (isMoving)
         {
-            // Move forward relative to the object's orientation
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
-            // Count elapsed time
+            transform.Translate(moveDirection.normalized * speed * Time.deltaTime, Space.World);
             timer += Time.deltaTime;
-
             if (timer >= duration)
             {
-                isMoving = false; // Stop moving
+                isMoving = false;
             }
         }
     }
