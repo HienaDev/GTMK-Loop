@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
 using System.Collections.Specialized;
-using UnityEngine.Networking; // add at top
+using UnityEngine.Networking;
+using System.Linq.Expressions; // add at top
 
 
 
@@ -37,7 +38,12 @@ namespace PDollarGestureRecognizer
 
         public Material meshMaterial;
 
+        [SerializeField] private Symbol[] symbols; 
+
         [SerializeField] private bool writingNewGestures = false;
+
+        private EnemyType enemyType = EnemyType.None;
+        private Color currentColor = Color.white;
 
         void Start()
         {
@@ -131,31 +137,35 @@ namespace PDollarGestureRecognizer
                 }
             }
 
+            if (recognized)
+            {
+                recognized = false;
+                strokeId = -1;
+
+                points.Clear();
+
+                foreach (LineRenderer lineRenderer in gestureLinesRenderer)
+                {
+
+                    //lineRenderer.positionCount = 0;
+                    lineRenderer.gameObject.GetComponent<DisappearLine>().Disappear();
+                }
+
+                gestureLinesRenderer.Clear();
+            }
+
             if (drawArea.Contains(virtualKeyPosition))
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (recognized)
-                    {
-                        recognized = false;
-                        strokeId = -1;
 
-                        points.Clear();
-
-                        foreach (LineRenderer lineRenderer in gestureLinesRenderer)
-                        {
-
-                            lineRenderer.positionCount = 0;
-                            Destroy(lineRenderer.gameObject);
-                        }
-
-                        gestureLinesRenderer.Clear();
-                    }
 
                     ++strokeId;
 
                     Transform tmpGesture = Instantiate(gestureOnScreenPrefab, transform.position, transform.rotation) as Transform;
+
                     currentGestureLineRenderer = tmpGesture.GetComponent<LineRenderer>();
+                    currentGestureLineRenderer.material.color = currentColor;
 
                     gestureLinesRenderer.Add(currentGestureLineRenderer);
 
@@ -182,8 +192,47 @@ namespace PDollarGestureRecognizer
                 message = gestureResult.GestureClass + " " + gestureResult.Score;
                 print("message3: " + message + " with: " + points.Count + " number of points: " + points[0]);
 
-                PolygonCollider2D col = currentGestureLineRenderer.GetComponent<PolygonCollider2D>();
-                print(col);
+
+
+                Symbol currSym = null;
+
+                foreach (Symbol sym in symbols)
+                {
+                    if (sym.name == gestureResult.GestureClass)
+                    {
+                        currSym = sym;
+                        break;
+                    }
+                }
+
+                if (gestureResult.Score < 0.8f || currSym == null && gestureResult.GestureClass != "Circle")
+                {
+                    message = "Gesture not recognized";
+                    foreach (LineRenderer lineRenderer in gestureLinesRenderer)
+                    {
+                        lineRenderer.material.color = Color.red;
+                    }
+                    return;
+                }
+
+                if (currSym != null)
+                {
+                    enemyType = currSym.killsThese;
+                    currentColor = currSym.color;
+
+                    foreach (LineRenderer lineRenderer in gestureLinesRenderer)
+                    {
+                        lineRenderer.material.color = currentColor;
+                    }
+
+                }
+
+                if(gestureResult.GestureClass != "Circle")
+                {
+                    return;
+                }
+
+
                 int pointCount = 0;
                 foreach (LineRenderer lineRenderer in gestureLinesRenderer)
                 {
@@ -215,7 +264,6 @@ namespace PDollarGestureRecognizer
 
                 CreateMeshFromPoints(positions);
 
-                col.points = positions;
             }
         }
 
@@ -259,46 +307,50 @@ namespace PDollarGestureRecognizer
 
             GUI.Label(new Rect(10, Screen.height - 40, 500, 50), message);
 
-            if (GUI.Button(new Rect(Screen.width - 100, 10, 100, 30), "Recognize"))
-            {
-                recognized = true;
-                points2 = points.ToArray();
-                Gesture candidate = new Gesture(points.ToArray());
-                Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
+            //if (GUI.Button(new Rect(Screen.width - 100, 10, 100, 30), "Recognize"))
+            //{
+            //    recognized = true;
+            //    points2 = points.ToArray();
+            //    Gesture candidate = new Gesture(points.ToArray());
+            //    Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
 
-                message = gestureResult.GestureClass + " " + gestureResult.Score;
-                print("message: " + message + " with: " + points.Count + " number of points: " + points[0].X + " " + points[0].Y);
-            }
-            else
-            if (Input.GetMouseButtonDown(1))
-            {
-                recognized = true;
-                points2 = points.ToArray();
-                Gesture candidate = new Gesture(points.ToArray());
+            //    message = gestureResult.GestureClass + " " + gestureResult.Score;
+            //    print("message: " + message + " with: " + points.Count + " number of points: " + points[0].X + " " + points[0].Y);
+            //}
+            //else
+            //if (Input.GetMouseButtonDown(1))
+            //{
+            //    recognized = true;
+            //    points2 = points.ToArray();
+            //    Gesture candidate = new Gesture(points.ToArray());
 
-                Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
+            //    Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
 
-                message = gestureResult.GestureClass + " " + gestureResult.Score;
-                print("message: " + message + " with: " + points.Count + " number of points: " + points[0].X + " " + points[0].Y);
-            }
+            //    message = gestureResult.GestureClass + " " + gestureResult.Score;
+            //    print("message: " + message + " with: " + points.Count + " number of points: " + points[0].X + " " + points[0].Y);
+            //}
 
             GUI.Label(new Rect(Screen.width - 200, 150, 70, 30), "Add as: ");
             newGestureName = GUI.TextField(new Rect(Screen.width - 150, 150, 100, 30), newGestureName);
 
-            if (GUI.Button(new Rect(Screen.width - 50, 150, 50, 30), "Add") && points.Count > 0 && newGestureName != "")
+            if(writingNewGestures)
             {
-                string fileName = String.Format("{0}/{1}-{2}.xml", Application.persistentDataPath, newGestureName, DateTime.Now.ToFileTime());
+                if (GUI.Button(new Rect(Screen.width - 50, 150, 50, 30), "Add") && points.Count > 0 && newGestureName != "")
+                {
+                    string fileName = String.Format("{0}/{1}-{2}.xml", Application.persistentDataPath, newGestureName, DateTime.Now.ToFileTime());
 
 #if !UNITY_WEBPLAYER
-                GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
+                    GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
 #endif
 
-                trainingSet.Add(new Gesture(points.ToArray(), newGestureName));
+                    trainingSet.Add(new Gesture(points.ToArray(), newGestureName));
 
-                newGestureName = "";
+                    newGestureName = "";
 
-                points.Clear();
+                    points.Clear();
+                }
             }
+
         }
     }
 }
