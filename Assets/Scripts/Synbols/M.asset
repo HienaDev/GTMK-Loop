@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: M
   m_EditorClassIdentifier: 
   name: M
+  sprite: {fileID: 0}
   color: {r: 0, g: 38.075047, b: 25.947008, a: 1}
-  killsThese: 0
+  killsThese: 4
