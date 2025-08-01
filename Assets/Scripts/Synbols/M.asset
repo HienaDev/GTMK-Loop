@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: M
   m_EditorClassIdentifier: 
   name: M
-  sprite: {fileID: 0}
-  color: {r: 0, g: 38.075047, b: 25.947008, a: 1}
+  sprite: {fileID: 21300000, guid: e0b7bf73b67754142bfabd87c6061d1d, type: 3}
+  material: {fileID: 0}
+  color: {r: 0, g: 2.9960785, b: 2.0417383, a: 1}
   killsThese: 4
