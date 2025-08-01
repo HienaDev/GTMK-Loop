@@ -51,6 +51,8 @@ namespace PDollarGestureRecognizer
         private List<Enemy> spawnedEnemies;
         public void AddEnemy(Enemy enemy) => spawnedEnemies.Add(enemy);
 
+        [SerializeField] public Material fireAltarMaterial;
+
         void Start()
         {
             spawnedEnemies = new List<Enemy>();
@@ -238,6 +240,7 @@ namespace PDollarGestureRecognizer
                         symbolUI.sprite = currSym.sprite;
                         symbolUI.color = currentColor;
                         symbolUI.material.SetColor("_Color", currentColor);
+                        fireAltarMaterial.SetColor("_Color", currentColor);
                     }
 
                 }
@@ -369,7 +372,7 @@ namespace PDollarGestureRecognizer
             {
                 Vector3 intersectionPoint = ray.GetPoint(distance);
                 finalIntersectionPoint = intersectionPoint;
-                tempSphere = Instantiate(sphere, intersectionPoint, Quaternion.identity);
+                //tempSphere = Instantiate(sphere, intersectionPoint, Quaternion.identity);
             }
             else
             {
