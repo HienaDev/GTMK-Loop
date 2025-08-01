@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Collections.Specialized;
 using UnityEngine.Networking;
 using System.Linq.Expressions; // add at top
-
+using UnityEngine.UI;
 
 
 namespace PDollarGestureRecognizer
@@ -46,7 +46,7 @@ namespace PDollarGestureRecognizer
         private Color currentColor = Color.white;
 
         [SerializeField] private GameObject sphere;
-        [SerializeField] private GameObject fromObjectTest;
+        [SerializeField] private Image symbolUI;
 
         private List<Enemy> spawnedEnemies;
         public void AddEnemy(Enemy enemy) => spawnedEnemies.Add(enemy);
@@ -235,6 +235,8 @@ namespace PDollarGestureRecognizer
                     foreach (LineRenderer lineRenderer in gestureLinesRenderer)
                     {
                         lineRenderer.material.color = currentColor;
+                        symbolUI.sprite = currSym.sprite;
+                        symbolUI.color = currentColor;
                     }
 
                 }

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: T
   m_EditorClassIdentifier: 
   name: T
+  sprite: {fileID: 21300000, guid: 4addab2fc202ab54a813563267012d17, type: 3}
   color: {r: 1, g: 0.24582207, b: 0, a: 1}
   killsThese: 3
