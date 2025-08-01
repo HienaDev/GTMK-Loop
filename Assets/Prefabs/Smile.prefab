@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 5
   target: {fileID: 0}
-  speed: 3
+  speed: 2
   sprite: {fileID: 6863318927089027044}
   particles: {fileID: 792204186841007490}
   deathParticles: {fileID: 792204186841007490}
@@ -225,7 +225,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6720615306690706432}
-  - component: {fileID: 7505644369479472221}
   m_Layer: 0
   m_Name: Simbolo
   m_TagString: Untagged
@@ -241,26 +240,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8017419343633100295}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.8, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -1.3, y: 6.52, z: 0}
+  m_LocalScale: {x: 0.489636, y: 0.489636, z: 0.489636}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 153932768064668652}
   m_Father: {fileID: 9178919563690211884}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7505644369479472221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8017419343633100295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b968a600ac57cd4696f7143771eb939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &8879608040376816422
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +326,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2131047583, guid: 52a80b6ab3551c34d999f7bb656879b7, type: 3}
-  m_Color: {r: 0.94765204, g: 1, b: 0.26981127, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

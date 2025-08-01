@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 2
   target: {fileID: 0}
-  speed: 3
+  speed: 2
   sprite: {fileID: 6863318927089027044}
   particles: {fileID: 792204186841007490}
   deathParticles: {fileID: 792204186841007490}
@@ -242,8 +242,8 @@ Transform:
   m_GameObject: {fileID: 8017419343633100295}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.8, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: -1.45, y: 6.82, z: 0}
+  m_LocalScale: {x: 0.489636, y: 0.489636, z: 0.489636}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 153932768064668652}

@@ -29,7 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 792204186841007501}
   - {fileID: 9178919563690211884}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   target: {fileID: 0}
-  speed: 3
+  speed: 2
   sprite: {fileID: 6863318927089027044}
   particles: {fileID: 792204186841007490}
   deathParticles: {fileID: 792204186841007490}
@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4255054167831806196}
-  - component: {fileID: 4626808619493512822}
   m_Layer: 0
   m_Name: Simbolo
   m_TagString: Untagged
@@ -109,25 +108,13 @@ Transform:
   m_GameObject: {fileID: 1954243314034352846}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.1, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: -1.31, y: 4.1, z: 0}
+  m_LocalScale: {x: 0.415387, y: 0.415387, z: 0.415387}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2649701732361457831}
   m_Father: {fileID: 858396403059639722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4626808619493512822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954243314034352846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b968a600ac57cd4696f7143771eb939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3177729785372773296
 GameObject:
   m_ObjectHideFlags: 0
