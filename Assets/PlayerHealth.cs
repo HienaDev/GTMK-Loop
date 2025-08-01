@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Sprite[] healthIcons;
     [SerializeField]  private Image healthUI;
 
+    [SerializeField] private GameObject deathScreen;
+
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -55,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         print("Player died!");
+        deathScreen.SetActive(true);
         // Add death behavior here (disable movement, trigger animation, etc.)
         gameObject.SetActive(false);
     }

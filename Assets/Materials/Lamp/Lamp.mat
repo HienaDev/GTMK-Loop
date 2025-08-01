@@ -135,7 +135,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimOutput: 0.3
+    - _RimOutput: 1
     - _ShadingFalloff: 0.3
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -148,7 +148,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.585019, g: 0.51731575, b: 0.78113204, a: 1}
+    - _Color: {r: 0.6981132, g: 0.29900318, b: 0.30769923, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0.21680555, b: 0.23018861, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
