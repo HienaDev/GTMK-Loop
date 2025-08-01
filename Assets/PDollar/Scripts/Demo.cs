@@ -46,15 +46,13 @@ namespace PDollarGestureRecognizer
         private Color currentColor = Color.white;
 
         [SerializeField] private GameObject sphere;
+        [SerializeField] private GameObject fromObjectTest;
 
         void Start()
         {
             platform = Application.platform;
             
-            drawArea = new Rect(0, 0, Screen.width, Screen.height);
 
-            if (writingNewGestures)
-                drawArea = new Rect(0, 0, Screen.width - Screen.width / 3, Screen.height);
 
             // Load pre-made gestures from StreamingAssets
             string streamingAssetsPath = Path.Combine(Application.streamingAssetsPath, "Gestures");
@@ -126,6 +124,11 @@ namespace PDollarGestureRecognizer
 
         void Update()
         {
+
+            drawArea = new Rect(0, 0, Screen.width, Screen.height);
+
+            if (writingNewGestures)
+                drawArea = new Rect(0, 0, Screen.width - Screen.width / 3, Screen.height);
 
             if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer)
             {
@@ -250,73 +253,189 @@ namespace PDollarGestureRecognizer
 
                 int currentInitialPos = 0;
 
+                List<Vector3> points3DList = new List<Vector3>();
+
+                Vector3 intersectionPoint = Vector3.zero;
+
                 foreach (LineRenderer lineRenderer in gestureLinesRenderer)
                 {
                     int lineRendererPointCount = lineRenderer.positionCount;
                     for (int i = currentInitialPos; i < lineRendererPointCount + currentInitialPos; i++)
                     {
                         Vector3 currPos = lineRenderer.GetPosition(i - currentInitialPos);
-                        print("Tried to get position: " + (i - currentInitialPos));
-                        positions[i] = new Vector2(currPos.x, currPos.y);
+                        //Instantiate(sphere, currPos, Quaternion.identity);
 
+                        print("Distance: " + GetDistanceToCameraPlane(lineRenderer.bounds.center, Camera.main));
+                        intersectionPoint = SpawnSphereOnOffsetCameraPlane(fromObjectTest, 10f);
+                        print("Tried to get position: " + (i - currentInitialPos));
+
+                        points3DList.Add(currPos);
                     }
 
                     currentInitialPos += lineRendererPointCount;
                 }
 
+                bool isInside = IsPointInPolygon(points3DList.ToArray(), intersectionPoint);
+                print("Object inside: " + isInside);
+
+
+
+
+                //CreateMeshFrom3DPoints(points3DList.ToArray());
+
+
                 print("Final current initial pos: " + currentInitialPos);
 
 
-                CreateMeshFromPoints(positions);
+                
 
             }
         }
 
-        void CreateMeshFromPoints(Vector2[] points2D)
+        float GetDistanceToCameraPlane(Vector3 worldPosition, Camera camera)
         {
-            // Triangulate the 2D shape
+            Vector3 toPoint = worldPosition - camera.transform.position;
+            float distance = Vector3.Dot(toPoint, camera.transform.forward);
+            return distance;
+        }
 
+        public Vector3 SpawnSphereOnOffsetCameraPlane(GameObject fromObject, float distanceFromCamera = 10f)
+        {
+            Vector3 origin = fromObject.transform.position;
+            Vector3 direction = (GetComponent<Camera>().transform.position - origin).normalized;
+
+            // Plane normal is the same as the camera’s forward vector
+            Vector3 planeNormal = GetComponent<Camera>().transform.forward;
+
+            // Plane point is 10 units in front of the camera
+            Vector3 planePoint = GetComponent<Camera>().transform.position + planeNormal * distanceFromCamera;
+
+            // Define the plane
+            Plane plane = new Plane(planeNormal, planePoint);
+
+            // Ray from the object toward the camera
+            Ray ray = new Ray(origin, direction);
+
+            GameObject tempSphere = null;
+
+            Vector3 finalIntersectionPoint = Vector3.zero;
+
+            if (plane.Raycast(ray, out float distance))
+            {
+                Vector3 intersectionPoint = ray.GetPoint(distance);
+                finalIntersectionPoint = intersectionPoint;
+                tempSphere = Instantiate(sphere, intersectionPoint, Quaternion.identity);
+            }
+            else
+            {
+                print("No intersection with the camera's offset plane.");
+            }
+
+            return finalIntersectionPoint;
+        }
+
+
+        void CreateMeshFrom3DPoints(Vector3[] points3D)
+        {
+            // Project points onto a 2D plane for triangulation (e.g., XY)
+            Vector2[] points2D = new Vector2[points3D.Length];
+            for (int i = 0; i < points3D.Length; i++)
+            {
+                points2D[i] = new Vector2(points3D[i].x, points3D[i].y); // You can change projection plane here
+            }
+
+            // Triangulate the 2D shape
             Triangulator triangulator = new Triangulator(points2D);
             int[] indices = triangulator.Triangulate();
             print("Generated indices: " + indices.Length);
 
-
-            // Convert Vector2 to Vector3 (flat on XY plane)
-            Vector3[] vertices = new Vector3[points2D.Length];
-            print("Vertices " + vertices.Length);
-            for (int i = 0; i < vertices.Length; i++)
-            {
-                Instantiate(sphere, new Vector3(points2D[i].x, points2D[i].y, 0f), Quaternion.identity);
-                vertices[i] = new Vector3(points2D[i].x, points2D[i].y, 0);
-            }
-
-            // Create the mesh
+            // Create the mesh using the original 3D positions
             Mesh mesh = new Mesh();
-            mesh.vertices = vertices;
+            mesh.vertices = points3D;
             mesh.triangles = indices;
             mesh.RecalculateNormals();
             mesh.RecalculateBounds();
 
-            // Create GameObject
+            // Create GameObject to hold the mesh
             GameObject meshObject = new GameObject("GestureMesh", typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider), typeof(Rigidbody));
 
             meshObject.GetComponent<Rigidbody>().isKinematic = true;
             meshObject.GetComponent<MeshFilter>().mesh = mesh;
             meshObject.GetComponent<MeshRenderer>().material = meshMaterial;
             meshObject.GetComponent<MeshCollider>().sharedMesh = mesh;
-
             meshObject.GetComponent<MeshCollider>().convex = true;
             meshObject.GetComponent<MeshCollider>().isTrigger = true;
 
-            // Calculate direction from camera to mesh object
+            // Optional: Calculate direction from camera to mesh for movement
             Vector3 directionFromCamera = (meshObject.transform.position - Camera.main.transform.position).normalized;
 
-            // Add movement script and assign direction
-            MoveForwardForSeconds mover = meshObject.AddComponent<MoveForwardForSeconds>();
-            mover.moveDirection = directionFromCamera;
 
-
+            // Optional: Add movement script
+            // MoveForwardForSeconds mover = meshObject.AddComponent<MoveForwardForSeconds>();
+            // mover.moveDirection = directionFromCamera;
         }
+
+        public bool IsPointInPolygon(Vector3[] polygonPoints, Vector3 testPoint)
+        {
+            if (polygonPoints.Length < 3)
+                return false;
+
+            // Step 1: Define the polygon plane
+            Plane plane = new Plane(polygonPoints[0], polygonPoints[1], polygonPoints[2]);
+
+            // Step 2: Project the testPoint and polygon points onto the plane
+            Vector3 projectedTestPoint = plane.ClosestPointOnPlane(testPoint);
+
+            // Step 3: Choose a projection axis to flatten the plane to 2D (e.g., XY, XZ, or YZ)
+            // We'll project to the best fitting plane by comparing normal
+            Vector3 normal = plane.normal;
+            Vector2[] polygon2D = new Vector2[polygonPoints.Length];
+            Vector2 point2D;
+
+            // Project onto dominant plane axis (drop smallest component of normal)
+            if (Mathf.Abs(normal.z) > Mathf.Abs(normal.x) && Mathf.Abs(normal.z) > Mathf.Abs(normal.y))
+            {
+                // Project to XY
+                for (int i = 0; i < polygonPoints.Length; i++)
+                    polygon2D[i] = new Vector2(polygonPoints[i].x, polygonPoints[i].y);
+                point2D = new Vector2(projectedTestPoint.x, projectedTestPoint.y);
+            }
+            else if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+            {
+                // Project to YZ
+                for (int i = 0; i < polygonPoints.Length; i++)
+                    polygon2D[i] = new Vector2(polygonPoints[i].y, polygonPoints[i].z);
+                point2D = new Vector2(projectedTestPoint.y, projectedTestPoint.z);
+            }
+            else
+            {
+                // Project to XZ
+                for (int i = 0; i < polygonPoints.Length; i++)
+                    polygon2D[i] = new Vector2(polygonPoints[i].x, polygonPoints[i].z);
+                point2D = new Vector2(projectedTestPoint.x, projectedTestPoint.z);
+            }
+
+            // Step 4: Perform point-in-polygon test (ray-casting algorithm)
+            return IsPointInPolygon2D(polygon2D, point2D);
+        }
+
+        private bool IsPointInPolygon2D(Vector2[] polygon, Vector2 point)
+        {
+            bool inside = false;
+            int j = polygon.Length - 1;
+            for (int i = 0; i < polygon.Length; i++)
+            {
+                if ((polygon[i].y > point.y) != (polygon[j].y > point.y) &&
+                    (point.x < (polygon[j].x - polygon[i].x) * (point.y - polygon[i].y) /
+                    (polygon[j].y - polygon[i].y) + polygon[i].x))
+                {
+                    inside = !inside;
+                }
+                j = i;
+            }
+            return inside;
+        }
+
 
         void OnGUI()
         {
