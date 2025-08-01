@@ -321,9 +321,11 @@ namespace PDollarGestureRecognizer
                     print("Enemy destroyed: " + enemies[i].name + " at position: " + enemies[i].transform.position);
                     enemiesToDestroy.Add(enemies[i]);
 
-
+                    
                 }
             }
+
+     
 
             foreach (Enemy enemy in enemiesToDestroy)
             {

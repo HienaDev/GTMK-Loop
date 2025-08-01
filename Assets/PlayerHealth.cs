@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
         print("Player took damage! Current health: " + currentHealth);
         ghosts.Play();
+        CameraShaker.Instance.Shake(0.7f, 1f);
         if (currentHealth <= 0)
         {
 
