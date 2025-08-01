@@ -53,6 +53,7 @@ namespace PDollarGestureRecognizer
 
         void Start()
         {
+            spawnedEnemies = new List<Enemy>();
             platform = Application.platform;
             
 
