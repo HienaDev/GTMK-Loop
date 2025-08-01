@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,9 +9,13 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private ParticleSystem ghosts;
 
+    [SerializeField] private Sprite[] healthIcons;
+    [SerializeField]  private Image healthUI;
+
     private void Start()
     {
         currentHealth = maxHealth;
+        UpdateHealthIcon();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +27,15 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-
+    private void UpdateHealthIcon()
+    {
+        int healthIndex = maxHealth - currentHealth;
+        if (healthIndex < 0 || healthIndex >= healthIcons.Length)
+        {
+            return;
+        }
+        healthUI.sprite = healthIcons[ maxHealth - currentHealth];
+    }
 
 
     private void TakeDamage(int amount)
@@ -31,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
         print("Player took damage! Current health: " + currentHealth);
         ghosts.Play();
         CameraShaker.Instance.Shake(0.7f, 1f);
+        UpdateHealthIcon();
         if (currentHealth <= 0)
         {
 
