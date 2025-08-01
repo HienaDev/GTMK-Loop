@@ -45,6 +45,8 @@ namespace PDollarGestureRecognizer
         private EnemyType enemyType = EnemyType.None;
         private Color currentColor = Color.white;
 
+        [SerializeField] private GameObject sphere;
+
         void Start()
         {
             platform = Application.platform;
@@ -273,13 +275,18 @@ namespace PDollarGestureRecognizer
         void CreateMeshFromPoints(Vector2[] points2D)
         {
             // Triangulate the 2D shape
+
             Triangulator triangulator = new Triangulator(points2D);
             int[] indices = triangulator.Triangulate();
+            print("Generated indices: " + indices.Length);
+
 
             // Convert Vector2 to Vector3 (flat on XY plane)
             Vector3[] vertices = new Vector3[points2D.Length];
+            print("Vertices " + vertices.Length);
             for (int i = 0; i < vertices.Length; i++)
             {
+                Instantiate(sphere, new Vector3(points2D[i].x, points2D[i].y, 0f), Quaternion.identity);
                 vertices[i] = new Vector3(points2D[i].x, points2D[i].y, 0);
             }
 
