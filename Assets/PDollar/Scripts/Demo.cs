@@ -212,6 +212,7 @@ namespace PDollarGestureRecognizer
 
                 foreach (Symbol sym in symbols)
                 {
+                    print(gestureResult.GestureClass);
                     if (sym.name == gestureResult.GestureClass)
                     {
                         currSym = sym;
