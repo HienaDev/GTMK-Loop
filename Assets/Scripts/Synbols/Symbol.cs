@@ -18,6 +18,8 @@ public class Symbol : ScriptableObject
 
     public Sprite sprite;
 
+    public Material material;
+
     [ColorUsage(true, true)]
     public Color color;
 

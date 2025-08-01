@@ -237,6 +237,7 @@ namespace PDollarGestureRecognizer
                         lineRenderer.material.color = currentColor;
                         symbolUI.sprite = currSym.sprite;
                         symbolUI.color = currentColor;
+                        symbolUI.material.SetColor("_Color", currentColor);
                     }
 
                 }
