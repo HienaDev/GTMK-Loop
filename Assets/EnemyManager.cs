@@ -46,6 +46,13 @@ namespace PDollarGestureRecognizer
                     demo.AddEnemy(tempEnemy);
                     tempEnemy.target = player;
 
+                    timeToSpawn -= 0.025f;
+
+                    if(timeToSpawn < 1f)
+                    {
+                        timeToSpawn = 1f; // Prevent too fast spawning
+                    }
+
                     // Flip sprite if spawned to the right of spawnPosition
                     if (randomizedSpawnPos.x < spawnPosition.position.x)
                     {

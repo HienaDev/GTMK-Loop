@@ -328,7 +328,7 @@ namespace PDollarGestureRecognizer
                 }
             }
 
-     
+            ScoreManager.Instance.AddScore(enemiesToDestroy.Count * enemiesToDestroy.Count);
 
             foreach (Enemy enemy in enemiesToDestroy)
             {
