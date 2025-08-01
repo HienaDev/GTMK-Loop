@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 4
   target: {fileID: 0}
-  speed: 2
+  speed: 1.5
   sprite: {fileID: 6863318927089027044}
   particles: {fileID: 792204186841007490}
   deathParticles: {fileID: 792204186841007490}
