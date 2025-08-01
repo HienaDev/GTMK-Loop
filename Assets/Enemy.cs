@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject deathParticles;
     [SerializeField] private Collider col;
 
-     public ParticleSystem[] hitParticles; // Array of hit particle systems
+    public ParticleSystem[] hitParticles; // Array of hit particle systems
 
     [SerializeField] private float timeToDisappear = 5f; // Time before the enemy disappears
     void Update()

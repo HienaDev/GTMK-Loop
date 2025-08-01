@@ -6,13 +6,18 @@ public enum EnemyType
     None,
     Goblin,
     Troll,
-    Dragon
+    Dragon,
+    Ogre,
+    Smile,
 }
 
 [CreateAssetMenu(fileName = "Symbol", menuName = "Scriptable Objects/Symbol")]
 public class Symbol : ScriptableObject
 {
     public string name = "Circle";
+
+    public Sprite sprite;
+
     [ColorUsage(true, true)]
     public Color color;
 
