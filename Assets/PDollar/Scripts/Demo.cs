@@ -320,7 +320,7 @@ namespace PDollarGestureRecognizer
             foreach (Enemy enemy in enemiesToDestroy)
             {
                 spawnedEnemies.Remove(enemy);
-                Destroy(enemy.gameObject);
+                enemy.BlowUp(true, currentColor);
             }
 
         }
