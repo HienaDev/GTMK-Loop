@@ -74,7 +74,7 @@ namespace PDollarGestureRecognizer
                     foreach (string file in files)
                     {
                         string xmlContent = File.ReadAllText(file);
-                        trainingSet.Add(GestureIO.ReadGestureFromXML(xmlContent));//
+                        trainingSet.Add(GestureIO.ReadGestureFromXML(xmlContent));
                     }
                 }
             }
@@ -84,9 +84,8 @@ namespace PDollarGestureRecognizer
             if (!Directory.Exists(customGesturesFolder))
             {
                 Directory.CreateDirectory(customGesturesFolder);
-                
             }
-print("Loaded user gesture: " + customGesturesFolder);
+
             // Load user custom gestures from custom folder
             string[] customGestureFiles = Directory.GetFiles(customGesturesFolder, "*.xml");
             foreach (string filePath in customGestureFiles)
@@ -303,6 +302,11 @@ print("Loaded user gesture: " + customGesturesFolder);
             List<Enemy> enemiesToDestroy = new List<Enemy>();
             for (int i = 0; i < enemies.Count; i++)
             {
+                if(enemies[i] == null || enemies[i].gameObject == null)
+                {
+                    enemiesToDestroy.Add(enemies[i]);
+                    continue;
+                }
                 print("Enemy: " + enemies[i].name);
                 if (enemies[i].enemyType != enemyType)
                 {
@@ -321,7 +325,9 @@ print("Loaded user gesture: " + customGesturesFolder);
             foreach (Enemy enemy in enemiesToDestroy)
             {
                 spawnedEnemies.Remove(enemy);
-                enemy.BlowUp(true, currentColor);
+
+                if(enemy != null)
+                    enemy.BlowUp(true, currentColor);
             }
 
         }
