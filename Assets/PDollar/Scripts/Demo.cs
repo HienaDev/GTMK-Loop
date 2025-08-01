@@ -48,6 +48,9 @@ namespace PDollarGestureRecognizer
         [SerializeField] private GameObject sphere;
         [SerializeField] private GameObject fromObjectTest;
 
+        private List<Enemy> spawnedEnemies;
+        public void AddEnemy(Enemy enemy) => spawnedEnemies.Add(enemy);
+
         void Start()
         {
             platform = Application.platform;
@@ -266,7 +269,6 @@ namespace PDollarGestureRecognizer
                         //Instantiate(sphere, currPos, Quaternion.identity);
 
                         print("Distance: " + GetDistanceToCameraPlane(lineRenderer.bounds.center, Camera.main));
-                        intersectionPoint = SpawnSphereOnOffsetCameraPlane(fromObjectTest, 10f);
                         print("Tried to get position: " + (i - currentInitialPos));
 
                         points3DList.Add(currPos);
@@ -275,8 +277,10 @@ namespace PDollarGestureRecognizer
                     currentInitialPos += lineRendererPointCount;
                 }
 
-                bool isInside = IsPointInPolygon(points3DList.ToArray(), intersectionPoint);
-                print("Object inside: " + isInside);
+                DestroyEnemies(spawnedEnemies, points3DList);
+
+                //bool isInside = IsPointInPolygon(points3DList.ToArray(), intersectionPoint);
+                //print("Object inside: " + isInside);
 
 
 
@@ -290,6 +294,30 @@ namespace PDollarGestureRecognizer
                 
 
             }
+        }
+
+        private void DestroyEnemies(List<Enemy> enemies, List<Vector3> points3DList)
+        {
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                print("Enemy: " + enemies[i].name);
+                if (enemies[i].enemyType != enemyType)
+                {
+                    continue;
+                }
+
+                if (IsPointInPolygon(points3DList.ToArray(), SpawnSphereOnOffsetCameraPlane(enemies[i].gameObject, 10f)))
+                {
+                    print("Enemy destroyed: " + enemies[i].name + " at position: " + enemies[i].transform.position);
+                    Destroy(enemies[i].gameObject);
+
+                    enemies.Remove(enemies[i]);
+                    
+                }
+            }
+
+     
         }
 
         float GetDistanceToCameraPlane(Vector3 worldPosition, Camera camera)
@@ -466,11 +494,13 @@ namespace PDollarGestureRecognizer
             //    print("message: " + message + " with: " + points.Count + " number of points: " + points[0].X + " " + points[0].Y);
             //}
 
-            GUI.Label(new Rect(Screen.width - 200, 150, 70, 30), "Add as: ");
-            newGestureName = GUI.TextField(new Rect(Screen.width - 150, 150, 100, 30), newGestureName);
+
 
             if(writingNewGestures)
             {
+                GUI.Label(new Rect(Screen.width - 200, 150, 70, 30), "Add as: ");
+                newGestureName = GUI.TextField(new Rect(Screen.width - 150, 150, 100, 30), newGestureName);
+
                 if (GUI.Button(new Rect(Screen.width - 50, 150, 50, 30), "Add") && points.Count > 0 && newGestureName != "")
                 {
                     string fileName = String.Format("{0}/{1}-{2}.xml", Application.persistentDataPath, newGestureName, DateTime.Now.ToFileTime());

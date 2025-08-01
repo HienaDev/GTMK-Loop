@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: T
   color: {r: 1, g: 0.24582207, b: 0, a: 1}
-  killsThese: 0
+  killsThese: 3
