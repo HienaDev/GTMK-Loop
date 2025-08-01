@@ -4547,6 +4547,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4f4b0604194c14c4eaaf4fd592c9d555, type: 3}
   - {fileID: 21300000, guid: eef86356c3c163f409b5b60c8844ccf2, type: 3}
   healthUI: {fileID: 1292025582}
+  deathScreen: {fileID: 0}
 --- !u!54 &1579053467
 Rigidbody:
   m_ObjectHideFlags: 0
