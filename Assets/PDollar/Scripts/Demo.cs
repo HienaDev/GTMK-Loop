@@ -299,7 +299,7 @@ namespace PDollarGestureRecognizer
 
         private void DestroyEnemies(List<Enemy> enemies, List<Vector3> points3DList)
         {
-
+            List<Enemy> enemiesToDestroy = new List<Enemy>();
             for (int i = 0; i < enemies.Count; i++)
             {
                 print("Enemy: " + enemies[i].name);
@@ -311,14 +311,18 @@ namespace PDollarGestureRecognizer
                 if (IsPointInPolygon(points3DList.ToArray(), SpawnSphereOnOffsetCameraPlane(enemies[i].gameObject, 10f)))
                 {
                     print("Enemy destroyed: " + enemies[i].name + " at position: " + enemies[i].transform.position);
-                    Destroy(enemies[i].gameObject);
+                    enemiesToDestroy.Add(enemies[i]);
 
-                    enemies.Remove(enemies[i]);
-                    
+
                 }
             }
 
-     
+            foreach (Enemy enemy in enemiesToDestroy)
+            {
+                spawnedEnemies.Remove(enemy);
+                Destroy(enemy.gameObject);
+            }
+
         }
 
         float GetDistanceToCameraPlane(Vector3 worldPosition, Camera camera)
