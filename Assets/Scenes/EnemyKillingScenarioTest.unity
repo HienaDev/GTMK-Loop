@@ -3338,15 +3338,12 @@ MonoBehaviour:
     type: 3}
   meshMaterial: {fileID: 2100000, guid: 08fa8232e9cbb7d4d83c803329f52771, type: 2}
   symbols:
-  - {fileID: 11400000, guid: a1c074e63e0c3834383345319640befa, type: 2}
   - {fileID: 11400000, guid: 9b74b552a87557842985c28b08eae249, type: 2}
-  - {fileID: 11400000, guid: 7d518bfdcbf9c944a87f35e87980c01f, type: 2}
-  - {fileID: 11400000, guid: 16ca108c0dab6f7439a28ec1c2b41790, type: 2}
   - {fileID: 11400000, guid: 47ee17e0b7395a04dabcb5ff1b1c07af, type: 2}
   - {fileID: 11400000, guid: babd4ae4bc437624dae0560cf26b8b86, type: 2}
   - {fileID: 11400000, guid: 235a90d22b4ebd948aee8447a82a2976, type: 2}
   - {fileID: 11400000, guid: e06a5aae341f8fa40ab89f1b4611ed47, type: 2}
-  writingNewGestures: 0
+  writingNewGestures: 1
   sphere: {fileID: 3752975011036958759, guid: 804627fdaa02a8744a75ee26f80c5e43, type: 3}
   fromObjectTest: {fileID: 0}
 --- !u!114 &1907031150

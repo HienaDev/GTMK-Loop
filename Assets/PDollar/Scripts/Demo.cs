@@ -74,7 +74,7 @@ namespace PDollarGestureRecognizer
                     foreach (string file in files)
                     {
                         string xmlContent = File.ReadAllText(file);
-                        trainingSet.Add(GestureIO.ReadGestureFromXML(xmlContent));
+                        trainingSet.Add(GestureIO.ReadGestureFromXML(xmlContent));//
                     }
                 }
             }
@@ -84,8 +84,9 @@ namespace PDollarGestureRecognizer
             if (!Directory.Exists(customGesturesFolder))
             {
                 Directory.CreateDirectory(customGesturesFolder);
+                
             }
-
+print("Loaded user gesture: " + customGesturesFolder);
             // Load user custom gestures from custom folder
             string[] customGestureFiles = Directory.GetFiles(customGesturesFolder, "*.xml");
             foreach (string filePath in customGestureFiles)
