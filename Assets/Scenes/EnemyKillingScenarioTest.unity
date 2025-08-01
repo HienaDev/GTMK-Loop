@@ -3563,6 +3563,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: babd4ae4bc437624dae0560cf26b8b86, type: 2}
   - {fileID: 11400000, guid: 235a90d22b4ebd948aee8447a82a2976, type: 2}
   - {fileID: 11400000, guid: e06a5aae341f8fa40ab89f1b4611ed47, type: 2}
+  - {fileID: 11400000, guid: 5e9831f129bdde24ab9372ef9d0961b0, type: 2}
   writingNewGestures: 0
   sphere: {fileID: 3752975011036958759, guid: 804627fdaa02a8744a75ee26f80c5e43, type: 3}
   symbolUI: {fileID: 998947068}
