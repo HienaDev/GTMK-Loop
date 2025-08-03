@@ -55,6 +55,8 @@ namespace PDollarGestureRecognizer
 
         [SerializeField] private Light globalLight;
 
+        [SerializeField] private Material cursorMaterial;
+
         void Start()
         {
             spawnedEnemies = new List<Enemy>();
@@ -245,6 +247,7 @@ namespace PDollarGestureRecognizer
                         globalLight.color = currentColor;
                         symbolUI.material.SetColor("_Color", currentColor);
                         fireAltarMaterial.SetColor("_Color", currentColor);
+                        cursorMaterial.SetColor("_OutlineColor", currentColor);
                     }
 
                 }
