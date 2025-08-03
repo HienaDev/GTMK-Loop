@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour
     // Reloads the currently active scene
     public void RestartScene()
     {
+        Time.timeScale = 1.0f;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
@@ -15,6 +16,7 @@ public class SceneController : MonoBehaviour
     // Loads the scene named "MainMenu"
     public void GoToMainMenu()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(sceneName);
     }
 
