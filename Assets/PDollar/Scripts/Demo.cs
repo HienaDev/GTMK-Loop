@@ -182,7 +182,7 @@ namespace PDollarGestureRecognizer
  
                     currentGestureLineRenderer = tmpGesture.GetComponent<LineRenderer>();
                     currentGestureLineRenderer.material.color = currentColor;
-                    globalLight.color = currentColor;
+                    
                     gestureLinesRenderer.Add(currentGestureLineRenderer);
 
                     vertexCount = 0;
@@ -242,6 +242,7 @@ namespace PDollarGestureRecognizer
                         lineRenderer.material.color = currentColor;
                         symbolUI.sprite = currSym.sprite;
                         symbolUI.color = currentColor;
+                        globalLight.color = currentColor;
                         symbolUI.material.SetColor("_Color", currentColor);
                         fireAltarMaterial.SetColor("_Color", currentColor);
                     }
