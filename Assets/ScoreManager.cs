@@ -10,6 +10,9 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreTextBG;
     [SerializeField] private TextMeshProUGUI finalScoreText;
 
+    [SerializeField] private GameObject pauseMenu;
+    private bool isPaused = false;
+
     private int score = 0;
 
     private void Awake()
@@ -31,6 +34,14 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreText();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseMenu();
+        }
+    }
+
     public void AddScore(int amount = 1)
     {
         score += amount;
@@ -45,6 +56,37 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = $"Score: {score.ToString()}";
             finalScoreTextBG.text = $"Score: <color=red>{score.ToString()}</color>";
             finalScoreText.text = $"Score: {score.ToString()}";
+        }
+    }
+
+    public void TogglePauseMenu()
+    {
+        if (pauseMenu != null)
+        {
+            if (isPaused)
+                pauseMenu.GetComponent<Popup>().AnimateToYOffscreen();
+            else
+                pauseMenu.GetComponent<Popup>().AnimateToYZero();
+        }
+    }
+
+    public void PauseGame()
+    {
+        if (pauseMenu != null)
+        {
+            isPaused = true;
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0; // Pause the game
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (pauseMenu != null)
+        {
+            isPaused = false;
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1; // Resume the game
         }
     }
 }

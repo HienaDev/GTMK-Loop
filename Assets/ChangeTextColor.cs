@@ -34,8 +34,8 @@ public class ChangeTextColor : MonoBehaviour
             text.color = changeToColor;
             text.text = ">" + defaultText + "<";
             textBG.text = ">" + defaultText + "<";
-            text.transform.DOScale(originalScale * scaleUpMultiplier, tweenDuration).SetEase(Ease.InOutQuad);
-            textBG.transform.DOScale(originalScale * scaleUpMultiplier, tweenDuration).SetEase(Ease.InOutQuad);
+            text.transform.DOScale(originalScale * scaleUpMultiplier, tweenDuration).SetEase(Ease.InOutQuad).SetUpdate(true);
+            textBG.transform.DOScale(originalScale * scaleUpMultiplier, tweenDuration).SetEase(Ease.InOutQuad).SetUpdate(true);
         }
     }
 
@@ -46,8 +46,8 @@ public class ChangeTextColor : MonoBehaviour
             text.color = defaultColor;
             text.text =  defaultText;
             textBG.text = defaultText;
-            text.transform.DOScale(originalScale, tweenDuration).SetEase(Ease.InOutQuad);
-            textBG.transform.DOScale(originalScale, tweenDuration).SetEase(Ease.InOutQuad);
+            text.transform.DOScale(originalScale, tweenDuration).SetEase(Ease.InOutQuad).SetUpdate(true);
+            textBG.transform.DOScale(originalScale, tweenDuration).SetEase(Ease.InOutQuad).SetUpdate(true);
         }
     }
 }
