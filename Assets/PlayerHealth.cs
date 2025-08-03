@@ -14,9 +14,12 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private GameObject deathScreen;
 
+    private Animator playerAnimator;
+
 
     private void Start()
     {
+        playerAnimator = GetComponentInChildren<Animator>();
         currentHealth = maxHealth;
         UpdateHealthIcon();
     }
@@ -43,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void TakeDamage(int amount)
     {
+        playerAnimator.SetTrigger("Damage");
         currentHealth -= amount;
         print("Player took damage! Current health: " + currentHealth);
         ghosts.Play();
