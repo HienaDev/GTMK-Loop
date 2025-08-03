@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FireUI 2
+  m_Name: FireUI 9
   m_Shader: {fileID: -6465566751694194690, guid: 30219e83fb387b84d89c57a85bc0b6b3,
     type: 3}
   m_Parent: {fileID: 0}
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eef86356c3c163f409b5b60c8844ccf2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6dca42dd1543f6b4d823aebfc94b33bc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -119,9 +119,9 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Height: 0.65
+    - _Height: 0.15
     - _Metallic: 0
-    - _NoiseScale: -5.23
+    - _NoiseScale: -27.89
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -136,15 +136,15 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 1
     - _Test: 1.03
-    - _Width: 1.21
+    - _Width: 1
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.3962264, g: 0, b: 0.32346073, a: 0.6666667}
-    - _Distortion: {r: 1.19, g: 2.76, b: 0, a: 0}
+    - _Color: {r: 0.20754719, g: 0, b: 0.0030823026, a: 0.6666667}
+    - _Distortion: {r: 1.1, g: 2.76, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FireBottomOffset: {r: 1.28, g: 0.48, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

@@ -4,11 +4,13 @@ using DG.Tweening; // Make sure DOTween is imported
 
 public class ChangeTextColor : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI textBG;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Color changeToColor;
 
     private Color defaultColor;
     private Vector3 originalScale;
+    
 
     [SerializeField] private float scaleUpMultiplier = 1.2f;
     [SerializeField] private float tweenDuration = 0.3f;
@@ -31,7 +33,9 @@ public class ChangeTextColor : MonoBehaviour
         {
             text.color = changeToColor;
             text.text = ">" + defaultText + "<";
+            textBG.text = ">" + defaultText + "<";
             text.transform.DOScale(originalScale * scaleUpMultiplier, tweenDuration).SetEase(Ease.InOutQuad);
+            textBG.transform.DOScale(originalScale * scaleUpMultiplier, tweenDuration).SetEase(Ease.InOutQuad);
         }
     }
 
@@ -41,7 +45,9 @@ public class ChangeTextColor : MonoBehaviour
         {
             text.color = defaultColor;
             text.text =  defaultText;
+            textBG.text = defaultText;
             text.transform.DOScale(originalScale, tweenDuration).SetEase(Ease.InOutQuad);
+            textBG.transform.DOScale(originalScale, tweenDuration).SetEase(Ease.InOutQuad);
         }
     }
 }
