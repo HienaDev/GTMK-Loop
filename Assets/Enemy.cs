@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,9 +14,25 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject deathParticles;
     [SerializeField] private Collider col;
 
+    [SerializeField] private AudioClip[] blowUpSounds; // Pool of explosion sounds
+    [SerializeField] private AudioMixerGroup audioMixerGroup;
+    
+    private AudioSource audioSource;
+    private System.Random rnd;
+
     public ParticleSystem[] hitParticles; // Array of hit particle systems
 
     [SerializeField] private float timeToDisappear = 5f; // Time before the enemy disappears
+
+    void Awake()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        
+        if (audioMixerGroup != null)
+            audioSource.outputAudioMixerGroup = audioMixerGroup;
+
+        rnd = new System.Random();
+    }
     void Update()
     {
         if (target != null)
@@ -36,7 +53,7 @@ public class Enemy : MonoBehaviour
 
         target = null;
 
-        if(death)
+        if (death)
         {
             deathParticles.SetActive(true);
         }
@@ -52,6 +69,8 @@ public class Enemy : MonoBehaviour
                 hitParticle.startColor = color;
             }
         }
+        // Play a random blow-up sound
+        PlayRandomBlowUpSound();
 
         StartCoroutine(DisappearAfterTime());
     }
@@ -60,5 +79,14 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToDisappear);
         Destroy(gameObject);
+    }
+    private void PlayRandomBlowUpSound()
+    {
+        if (blowUpSounds == null || blowUpSounds.Length == 0 || audioSource == null)
+            return;
+
+        int index = rnd.Next(0, blowUpSounds.Length);
+        audioSource.clip = blowUpSounds[index];
+        audioSource.Play();
     }
 }
