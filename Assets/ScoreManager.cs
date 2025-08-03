@@ -7,6 +7,8 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreTextBG;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI finalScoreTextBG;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
 
     private int score = 0;
 
@@ -39,8 +41,10 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreTextBG.text = $"Score: {score.ToString()}";
-            scoreText.text = $"Score: <color=red>{score.ToString()}</color>";
+            scoreTextBG.text = $"Score: <color=red>{score.ToString()}</color>"; 
+            scoreText.text = $"Score: {score.ToString()}";
+            finalScoreTextBG.text = $"Score: <color=red>{score.ToString()}</color>";
+            finalScoreText.text = $"Score: {score.ToString()}";
         }
     }
 }

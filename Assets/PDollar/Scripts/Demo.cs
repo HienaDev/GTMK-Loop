@@ -496,7 +496,8 @@ namespace PDollarGestureRecognizer
         {
             //GUI.Box(drawArea, "Draw Area");
 
-            GUI.Label(new Rect(10, Screen.height - 40, 500, 50), message);
+            if(writingNewGestures)
+                GUI.Label(new Rect(10, Screen.height - 40, 500, 50), message);
 
             //if (GUI.Button(new Rect(Screen.width - 100, 10, 100, 30), "Recognize"))
             //{
