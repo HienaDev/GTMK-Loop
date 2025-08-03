@@ -150,7 +150,7 @@ Material:
     - _EmissionColor: {r: 1, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0.25905916, g: 0, b: 0.3433962, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _Toon_Ramp_Tinting: {r: 0.3207547, g: 0, b: 0, a: 0}
+    - _Toon_Ramp_Tinting: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6688593805733683709
