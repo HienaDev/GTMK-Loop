@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FireUI 2
+  m_Name: FireUI 7
   m_Shader: {fileID: -6465566751694194690, guid: 30219e83fb387b84d89c57a85bc0b6b3,
     type: 3}
   m_Parent: {fileID: 0}
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eef86356c3c163f409b5b60c8844ccf2, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -143,7 +143,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.3962264, g: 0, b: 0.32346073, a: 0.6666667}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.6666667}
     - _Distortion: {r: 1.19, g: 2.76, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FireBottomOffset: {r: 1.28, g: 0.48, b: 0, a: 0}

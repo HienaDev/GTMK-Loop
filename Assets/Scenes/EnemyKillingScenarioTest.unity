@@ -3770,6 +3770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29ec02e9af5cc64f9c5150fb11079d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textBG: {fileID: 0}
   text: {fileID: 1005408445}
   changeToColor: {r: 1, g: 0.972549, b: 0.41960785, a: 1}
   scaleUpMultiplier: 1.1
@@ -8128,6 +8129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29ec02e9af5cc64f9c5150fb11079d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textBG: {fileID: 0}
   text: {fileID: 1217128503}
   changeToColor: {r: 1, g: 0.972549, b: 0.41960785, a: 1}
   scaleUpMultiplier: 1.1
@@ -8223,7 +8225,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2121283764}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: RestartScene
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13803,6 +13805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d175a07c16c35ed40939ad70ffe87672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: MainMenu
 --- !u!114 &2121283765
 MonoBehaviour:
   m_ObjectHideFlags: 0
