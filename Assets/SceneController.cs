@@ -27,4 +27,9 @@ public class SceneController : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    private void Update()
+    {
+        Shader.SetGlobalFloat("_UnscaledTime", Time.unscaledTime);
+    }
 }
