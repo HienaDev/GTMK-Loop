@@ -53,6 +53,8 @@ namespace PDollarGestureRecognizer
 
         [SerializeField] public Material fireAltarMaterial;
 
+        [SerializeField] private Light globalLight;
+
         void Start()
         {
             spawnedEnemies = new List<Enemy>();
@@ -180,7 +182,7 @@ namespace PDollarGestureRecognizer
  
                     currentGestureLineRenderer = tmpGesture.GetComponent<LineRenderer>();
                     currentGestureLineRenderer.material.color = currentColor;
-
+                    globalLight.color = currentColor;
                     gestureLinesRenderer.Add(currentGestureLineRenderer);
 
                     vertexCount = 0;
