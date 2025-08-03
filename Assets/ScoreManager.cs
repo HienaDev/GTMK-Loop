@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private Material material1;
     [SerializeField] private Material material2;
+    [SerializeField] private Shader shader;
 
     private void Awake()
     {
@@ -39,8 +40,8 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        material1.SetFloat("_UnscaledTime", Time.unscaledTime);
-        material2.SetFloat("_UnscaledTime", Time.unscaledTime);
+        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
