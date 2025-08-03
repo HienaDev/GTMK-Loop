@@ -2734,7 +2734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4040,7 +4040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29ec02e9af5cc64f9c5150fb11079d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBG: {fileID: 0}
+  textBG: {fileID: 1853807981}
   text: {fileID: 1005408445}
   changeToColor: {r: 1, g: 0.972549, b: 0.41960785, a: 1}
   scaleUpMultiplier: 1.1
@@ -8504,7 +8504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29ec02e9af5cc64f9c5150fb11079d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBG: {fileID: 0}
+  textBG: {fileID: 741691049}
   text: {fileID: 1217128503}
   changeToColor: {r: 1, g: 0.972549, b: 0.41960785, a: 1}
   scaleUpMultiplier: 1.1
@@ -12283,7 +12283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: dfc60e982f60f1943be0a7017516c462, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
