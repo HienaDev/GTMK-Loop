@@ -15,5 +15,5 @@ MonoBehaviour:
   name: X
   sprite: {fileID: 21300000, guid: d168afbf740502a4f9b1448e394eb398, type: 3}
   material: {fileID: 0}
-  color: {r: 14.259479, g: 0, b: 5.7485857, a: 1}
+  color: {r: 2.1185474, g: 0, b: 0.85407406, a: 1}
   killsThese: 2

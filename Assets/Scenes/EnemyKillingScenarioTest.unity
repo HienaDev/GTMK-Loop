@@ -733,7 +733,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.6132076, g: 0.45714346, b: 0.45412073, a: 1}
+  m_Color: {r: 0.6132076, g: 0.396054, b: 0.39048594, a: 1}
   m_Intensity: 0.7
   m_Range: 10
   m_SpotAngle: 30
@@ -12956,6 +12956,7 @@ MonoBehaviour:
   sphere: {fileID: 3752975011036958759, guid: 804627fdaa02a8744a75ee26f80c5e43, type: 3}
   symbolUI: {fileID: 998947068}
   fireAltarMaterial: {fileID: 2100000, guid: 09ae5bc555f451d43bb752812af1414d, type: 2}
+  globalLight: {fileID: 148912645}
 --- !u!114 &1907031150
 MonoBehaviour:
   m_ObjectHideFlags: 0
