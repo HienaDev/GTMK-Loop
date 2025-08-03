@@ -16507,6 +16507,8 @@ MonoBehaviour:
   finalScoreTextBG: {fileID: 1397505544}
   finalScoreText: {fileID: 349472254}
   pauseMenu: {fileID: 1719034330}
+  material1: {fileID: 2100000, guid: 88bb199b22cd78e48b330adcde6b2514, type: 2}
+  material2: {fileID: 2100000, guid: 6c25fee4a8b3f8c469b1672ab9edbe99, type: 2}
 --- !u!1001 &2121969208
 PrefabInstance:
   m_ObjectHideFlags: 0

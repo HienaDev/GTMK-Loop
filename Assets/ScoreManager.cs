@@ -15,6 +15,9 @@ public class ScoreManager : MonoBehaviour
 
     private int score = 0;
 
+    [SerializeField] private Material material1;
+    [SerializeField] private Material material2;
+
     private void Awake()
     {
         // Singleton pattern
@@ -36,7 +39,9 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        material1.SetFloat("_UnscaledTime", Time.unscaledTime);
+        material2.SetFloat("_UnscaledTime", Time.unscaledTime);
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
         }
