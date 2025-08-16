@@ -1875,7 +1875,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1234704145}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d79cba4749bd22a48bec606343e72f09,
         type: 3}
@@ -1900,12 +1900,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d79cba4749bd22a48bec606343e72f09,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1
+      value: 16.380001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79cba4749bd22a48bec606343e72f09,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45.79
+      value: 55.690002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79cba4749bd22a48bec606343e72f09,
         type: 3}
@@ -3045,7 +3045,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 86c34e4bfa68a224a990e1ffc4e1d9e3, type: 3}
   m_Resource: {fileID: 8300000, guid: 86c34e4bfa68a224a990e1ffc4e1d9e3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10304,6 +10304,7 @@ Transform:
   - {fileID: 303255700}
   - {fileID: 108533825}
   - {fileID: 33333274162693290}
+  - {fileID: 1866293182}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1243804596
@@ -15488,6 +15489,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853807979}
   m_CullTransparentMesh: 1
+--- !u!4 &1866293182 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d79cba4749bd22a48bec606343e72f09,
+    type: 3}
+  m_PrefabInstance: {fileID: 293117289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1868581905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17214,6 +17221,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1719034330}
   material1: {fileID: 2100000, guid: 88bb199b22cd78e48b330adcde6b2514, type: 2}
   material2: {fileID: 2100000, guid: 6c25fee4a8b3f8c469b1672ab9edbe99, type: 2}
+  shader: {fileID: 0}
 --- !u!1001 &2121969208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17567,5 +17575,4 @@ SceneRoots:
   - {fileID: 473041870}
   - {fileID: 1234704145}
   - {fileID: 148912646}
-  - {fileID: 293117289}
   - {fileID: 378587372}
